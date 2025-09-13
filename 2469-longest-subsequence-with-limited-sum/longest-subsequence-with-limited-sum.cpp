@@ -15,6 +15,7 @@ public:
             int count=0;
             for(int j=0;j<m;j++){
                 if(queries[i]>=nums[j]) count++;
+                else break;
             }
             ans[i]=count;
         }
