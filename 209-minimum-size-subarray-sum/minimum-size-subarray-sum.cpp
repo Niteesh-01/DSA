@@ -18,5 +18,6 @@ public:
         }
         if(minlen==INT_MAX) return 0;
         else return minlen;
+        //here time com=O(n) total operations <=2*n
     }
 };
