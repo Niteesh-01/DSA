@@ -2,12 +2,21 @@ class Solution {
 public:
     int singleNumber(vector<int>& nums) {
         int n=nums.size();
-        if(n==1) return nums[0];
-        sort(nums.begin(),nums.end());
-        if(nums[n-1]!=nums[n-2]) return nums[n-1];
-        for(int i=0;i<n-1;i+=2){
-            if(nums[i]!=nums[i+1]) return nums[i];
+        // if(n==1) return nums[0];
+        // sort(nums.begin(),nums.end());
+        // if(nums[n-1]!=nums[n-2]) return nums[n-1];
+        // for(int i=0;i<n-1;i+=2){
+        //     if(nums[i]!=nums[i+1]) return nums[i];
+        // }
+        // return -1;
+        //can also done by sets
+        unordered_set<int> s;
+        for(int i=0;i<n;i++){
+            if(s.find(nums[i])!=s.end()){ //ele exist then erase it
+                s.erase(nums[i]);
+            }
+            else s.insert(nums[i]);
         }
-        return -1;
+        return *s.begin();
     }
 };
