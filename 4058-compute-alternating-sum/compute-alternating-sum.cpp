@@ -1,12 +1,11 @@
 class Solution {
 public:
     int alternatingSum(vector<int>& nums) {
-        int n=nums.size();
-        int Osum=0,Esum=0;
-        for(int i=0;i<n;i++){
+        int Esum=0;
+        for(int i=0;i<nums.size();i++){
             if(i%2==0) Esum+=nums[i];
-            else Osum+=nums[i];
+            else Esum-=nums[i];
         }
-    return Esum-=Osum;
+    return Esum;
     }
 };
