@@ -7,7 +7,6 @@ public:
             if(i%2==0) Esum+=nums[i];
             else Osum+=nums[i];
         }
-        int ans=Esum-Osum;
-    return ans;
+    return Esum-=Osum;
     }
 };
