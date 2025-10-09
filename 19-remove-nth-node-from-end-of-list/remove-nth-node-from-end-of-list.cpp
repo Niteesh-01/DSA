@@ -23,11 +23,11 @@ public:
             return head;
         }
         //nth from end =(len-n+1)th from start
-        ListNode* t=head; //jise remove krna uske 1 pahle tk traverse kro t ko
+        temp=head; //jise remove krna uske 1 pahle tk traverse kro temp ko
         for(int i=1;i<len-n;i++){
-            t=t->next;
+            temp=temp->next;
         }
-        t->next=t->next->next;
+        temp->next=temp->next->next;
         return head;
     }
 };
