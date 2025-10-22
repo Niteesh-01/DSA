@@ -34,11 +34,19 @@ public:
     }
     ListNode* mergeKLists(vector<ListNode*>& lists) {
         if(lists.size()==0) return NULL;
+        // while(lists.size()>1){
+        //     ListNode* a=lists[lists.size()-1];
+        //     lists.pop_back();
+        //     ListNode* b=lists[lists.size()-1];
+        //     lists.pop_back();
+        //     ListNode* c=merge(a,b);
+        //     lists.push_back(c);
+        //}
         while(lists.size()>1){
-            ListNode* a=lists[lists.size()-1];
-            lists.pop_back();
-            ListNode* b=lists[lists.size()-1];
-            lists.pop_back();
+            ListNode* a=lists[0]; //lists[0] is a node lists me ListNodes ke head pade h
+            lists.erase(lists.begin());
+            ListNode* b=lists[0];
+            lists.erase(lists.begin());
             ListNode* c=merge(a,b);
             lists.push_back(c);
         }
