@@ -27,7 +27,7 @@ public:
             }
             temp=temp->next;
         }
-        tl->next=NULL;
+        //tl->next=NULL;
         th->next=NULL;
         tl->next=hi->next;
     return lo->next;
