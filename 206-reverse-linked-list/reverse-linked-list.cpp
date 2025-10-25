@@ -38,15 +38,20 @@ public:
         // return head;
 
         //optimised solution
-        ListNode* pre=NULL;
-        ListNode* Next=NULL;
-        ListNode* curr=head;
-        while(curr){
-            Next=curr->next;
-            curr->next=pre;
-            pre=curr;
-            curr=Next;
-        }
-        return pre;
+        // ListNode* pre=NULL;
+        // ListNode* Next=NULL;
+        // ListNode* curr=head;
+        // while(curr){
+        //     Next=curr->next;
+        //     curr->next=pre;
+        //     pre=curr;
+        //     curr=Next;
+        // }
+        // return pre;
+        if(head==NULL || head->next==NULL) return head;
+        ListNode* newhead=reverseList(head->next);
+        head->next->next=head;
+        head->next=NULL;
+        return newhead;
     }
 };
