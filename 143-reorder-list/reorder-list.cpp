@@ -27,13 +27,15 @@ public:
         slow->next=NULL;
         ListNode *a=head,*b=nh;
         ListNode* c=new ListNode(0);
+        ListNode* tempc=c;
         while(a || b){
-            c->next=a;
-            c=c->next;
+            tempc->next=a;
+            tempc=tempc->next;
             a=a->next;
-            c->next=b;
-            c=c->next;
+            tempc->next=b;
+            tempc=tempc->next;
             if(b) b=b->next;
         }
+        head=c->next;
     }
 };
