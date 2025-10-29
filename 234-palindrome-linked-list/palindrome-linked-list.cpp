@@ -45,25 +45,43 @@ public:
         // }
         // return true; 
 
-        //create a new listnode with same values as in this nodelist
-        ListNode* copy=new ListNode(0); //farzy node
-        ListNode* temp=head;
-        ListNode* tempc=copy;
-        while(temp){
-            ListNode* node=new ListNode(temp->val);
-            tempc->next=node;
-            temp=temp->next;
-            tempc=tempc->next;
+        //2nd approach create a new listnode with same values as in this nodelist
+    //     ListNode* copy=new ListNode(0); //farzy node
+    //     ListNode* temp=head;
+    //     ListNode* tempc=copy;
+    //     while(temp){
+    //         ListNode* node=new ListNode(temp->val);
+    //         tempc->next=node;
+    //         temp=temp->next;
+    //         tempc=tempc->next;
+    //     }
+    //     copy=copy->next;
+    //     temp=head;
+    //     copy=reverseList(copy);
+    //     tempc=copy;
+    //     while(temp){
+    //         if(temp->val!=tempc->val) return false;
+    //         temp=temp->next;
+    //         tempc=tempc->next;
+    //     }
+    // return true;
+
+    //3rd approach
+    //i.e first half of the list = second half of the list
+        ListNode *slow=head , *fast=head;
+        while(fast->next!=NULL && fast->next->next!=NULL){
+            slow=slow->next;
+            fast=fast->next->next;  
         }
-        copy=copy->next;
-        temp=head;
-        copy=reverseList(copy);
-        tempc=copy;
-        while(temp){
-            if(temp->val!=tempc->val) return false;
-            temp=temp->next;
-            tempc=tempc->next;
+        //now slow is at left middle/middle of the list so reverse the second half of the list now
+        ListNode* nh=reverseList(slow->next);
+        slow->next=nh;
+        ListNode *a=head, *b=nh;
+        while(b){
+            if(a->val!=b->val) return false;
+            a=a->next;
+            b=b->next;
         }
-    return true;
+        return true;
     }
 };
