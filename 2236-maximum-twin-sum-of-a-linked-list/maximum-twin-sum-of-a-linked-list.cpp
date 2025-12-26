@@ -11,31 +11,44 @@
 class Solution {
 public:
     int pairSum(ListNode* head) {
-        stack<int> st;
-        int size=0;
-        ListNode* temp=head;
-        while(temp){
-            size++;
-            temp=temp->next;
+        // stack<int> st;
+        // int size=0;
+        // ListNode* temp=head;
+        // while(temp){
+        //     size++;
+        //     temp=temp->next;
+        // }
+        // int n=size/2;
+        // temp=head;
+        // for(int i=0;i<n;i++){
+        //     temp=temp->next;
+        // }
+        // for(int i=n;i<size;i++){
+        //     st.push(temp->val);
+        //     temp=temp->next;
+        // }
+        // //find max
+        // int mx=INT_MIN;
+        // temp=head;
+        // for(int i=0;i<n;i++){
+        //     mx=max(mx,temp->val + st.top());
+        //     temp=temp->next;
+        //     st.pop();
+        // }
+        // return mx;
+
+        //two pointer approach
+        vector<int> v;
+        ListNode *slow=head, *fast=head;
+        while(fast and fast->next){
+            v.push_back(slow->val);
+            slow=slow->next;
+            fast=fast->next->next;
         }
-        int n=size/2;
-        temp=head;
-        for(int i=0;i<n;i++){
-            temp=temp->next;
-        }
-        for(int i=n;i<size;i++){
-            st.push(temp->val);
-            temp=temp->next;
-        }
-        //find max
-        int mx=INT_MIN,sum=0;
-        temp=head;
-        for(int i=0;i<n;i++){
-            sum=temp->val + st.top();
-            mx=max(mx,sum);
-            sum=0;
-            temp=temp->next;
-            st.pop();
+        int mx=INT_MIN;
+        for(int i=v.size()-1;i>=0;i--){
+            mx=max(mx,v[i]+slow->val);
+            slow=slow->next;
         }
         return mx;
     }
