@@ -1,61 +1,41 @@
 class MinStack {
 public:
-    //method 1 T.C O(1) S.C O(n)
-    // stack<int> st;
-    // stack<int> helper;
-
-    // MinStack() {
-        
-    // }
-    
-    // void push(int val) {
-    //     st.push(val);
-    //     if(helper.empty() || val<helper.top()){
-    //         helper.push(val);
-    //     }
-    //     else{
-    //         helper.push(helper.top());
-    //     }
-    // }
-    
-    // void pop() {
-    //     st.pop();
-    //     helper.pop();
-    // }
-    
-    // int top() {
-    //     return st.top();
-    // }
-    
-    // int getMin() {
-    //     return helper.top();
-    // }
-
-
-    //method 2 using vector
-    vector<int> v;
+    long long mn;
+    stack<long long> st;
     MinStack() {
-        
+        mn=LLONG_MAX;
     }
     
     void push(int val) {
-       v.push_back(val);
+        long long x=(long long)val;
+        if(st.empty()){
+            st.push(x);
+            mn=x;
+        }
+        else if(x>=mn) st.push(x);
+        else{  //if(val<st.top())
+            st.push(2*x-mn);
+            mn=x;
+        }
     }
     
     void pop() {
-        v.pop_back();
+        if(st.top()<mn){ //fake value
+            long long oldmn=2*mn-st.top();
+            mn=oldmn;
+        }
+        st.pop();
     }
     
     int top() {
-        return v[v.size()-1];
+        if(st.top()<mn){
+            return mn;
+        }
+        else return (int)st.top();
     }
     
     int getMin() {
-        int mn=v[0];
-        for(int i=1;i<v.size();i++){
-            mn=min(mn,v[i]);
-        }
-        return mn;
+       return (int)mn; 
     }
 };
 
