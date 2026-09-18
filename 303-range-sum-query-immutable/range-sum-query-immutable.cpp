@@ -1,18 +1,18 @@
 class NumArray {
+    vector<int> a;
 public:
-    vector<int> pre; //to use it in both functions it should be declared in public
     NumArray(vector<int>& nums) {
-        pre=vector<int>(nums.size()); //redefining pre for nums length
-        pre[0]=nums[0];
-        int n=nums.size();
-        for(int i=1;i<n;i++){
-            pre[i]=pre[i-1]+nums[i];
+        for(int i=0;i<nums.size();i++){
+            a.push_back(nums[i]);
         }
     }
     
     int sumRange(int left, int right) {
-        if(left==0) return pre[right];
-        return pre[right]-pre[left-1];
+        int ans;
+        for(int i=left;i<=right;i++){
+            ans+=a[i];
+        }
+        return ans;
     }
 };
 
