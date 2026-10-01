@@ -21,4 +21,6 @@ public:
         if(a!=-1) c=char(int('a')+a);
         return c;
     }
+
+    //another optimised aproach can be take two sum variables and store the ascii sum of both strings and then return the difference of these sum
 };
